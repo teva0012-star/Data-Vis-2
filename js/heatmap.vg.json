@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 750,
+  "data": {
+    "url": "https://raw.githubusercontent.com/teva0012-star/Employment_data/refs/heads/main/Employment_Unemployment_GDP_data.csv",
+    "format": {"type": "csv"}
+  },
+  "title": "Change in Population by Continent",
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    },
+    "axis": {
+      "domain": false
+    }
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "Population",
+          "as": "total_population"
+        }
+      ],
+      "groupby": ["Year", "Continent"]
+    },
+    {
+      "window": [
+        {
+          "op": "lag",
+          "field": "total_population",
+          "as": "previous_population"
+        }
+      ],
+      "sort": [
+        {"field": "Year", "order": "ascending"}
+      ]
+    },
+    {
+      "calculate": "datum.total_population - datum.previous_population",
+      "as": "population_change"
+    },
+    {
+      "filter": "datum.population_change != null"
+    },
+    {
+      "calculate": "datum.population_change / 1000000",  
+      "as": "population_change_in_millions"
+    }
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "Continent",
+      "type": "nominal",
+      "title": "Continent"
+    },
+    "color": {
+        "field": "population_change_in_millions",
+        "type": "quantitative",
+        "scale": {
+            "domain": [-4100, 0, 4200],  
+            "range": ["#2c7bb6", "#ffeafd", "#d7191c"]  
+        },
+        "legend": {
+            "title": "Pop. Change (Million)"
+        }
+    },
+    "tooltip": [
+      {"field": "Year", "type": "ordinal", "title": "Year"},
+      {"field": "Continent", "type": "nominal", "title": "Continent"},
+      {"field": "population_change_in_millions", "type": "quantitative", "title": "Population Change (100 million)"},
+      {"field": "total_population", "type": "quantitative", "format": ","}
+    ],
+    "stroke": {"value": "#FFFFFF"},  
+    "strokeWidth": {"value": 1} 
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Unemployment Rates Around the World",
+  "width": 840,
+  "height": 420,
+  "projection": {"type": "equalEarth"},
+  "params": [
+    {
+      "name": "year_selection",
+      "value": 2022,
+      "bind": {
+        "input": "range",
+        "min": 1991,
+        "max": 2022,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "#cfeff6"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#cccccc"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {"type": "geoshape", "fill": "#efefef", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/teva0012-star/Employment_data/refs/heads/main/Employment_Unemployment_GDP_data.csv"
+            },
+            "key": "Country Name",
+            "fields": ["Unemployment Rate", "Year", "GDP (in USD)"]
+          }
+        },
+        {
+          "filter": "datum.Year == year_selection"
+        },
+        {"calculate": "datum.GDP/1e9", "as": "GDP (million USD)"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [3, 10, 20, 30],
+            "range": ["#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "8c2d04"]
+          },
+          "title": "Unemployment (%)"
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "title": "Country"},
+          {"field": "Year", "title": "Year"},
+          {"field": "Unemployment Rate", "title": "Unemployment (%)", "format": ".2f"},
+          {"field": "GDP (million USD)", "title": "GDP (million USD)", "format": ".2s"}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/teva0012-star/Employment_data/refs/heads/main/Employment_Unemployment_GDP_data.csv"
+  },
+  "params": [
+    {
+      "name": "year_selection",
+      "value": 2022,
+      "bind": {
+        "input": "range",
+        "min": 1991,
+        "max": 2022,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    },
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 1500000000,
+        "step": 10000000,
+        "name": "Minimum Population: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "North America", "South America", "Europe", "Africa", "Asia", "Oceania"],
+        "labels": ["Show All", "North America", "South America", "Europe", "Africa", "Asia", "Oceania"],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "title": "GDP per Capita vs Unemployment Rate",
+      "width": 370,
+      "height": 250,
+      "transform": [
+        {"filter": "datum.Population > Population_Above"},
+        {"filter": "datum.Year == year_selection"},
+        {"filter": "Continent_selection == null || datum.Continent == Continent_selection"},
+        {
+          "calculate": "datum.GDP/datum.Population",
+          "as": "GDP per capita"
+        },
+        {
+          "calculate": "datum['GDP per capita'] / 1000",
+          "as": "GDP per capita (thousand USD)"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "title": "Unemployment Rate (%)",
+          "axis": {"tickCount": 5},
+          "scale": {"domain": [0, 40]}
+        },
+        "y": {
+          "field": "GDP per capita (thousand USD)",
+          "type": "quantitative",
+          "title": "GDP per Capita (Thousand USD)",
+          "axis": {"tickCount": 6, "format": ".1f"},
+          "scale": {"domain": [0, 140]}
+        }
+      },
+      "layer": [
+        {
+          "mark": "circle",
+          "encoding": {
+            "size": {
+              "field": "Population",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [10000, 500000, 10000000, 500000000, 1000000000],
+                "range": [10, 30, 50, 150, 200, 300]
+              },
+              "legend": {
+                "format": ".1s",
+                "labelExpr": "replace(datum.label, 'G', 'B')"
+              }
+            },
+            "color": {
+              "field": "Continent",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "North America",
+                  "South America",
+                  "Europe",
+                  "Africa",
+                  "Asia",
+                  "Oceania"
+                ],
+                "range": [
+                  "#e41a1c",
+                  "#984ea3",
+                  "#ff7f00",
+                  "#a6cee3",
+                  "#377eb8",
+                  "#a65628"
+                ]
+              }
+            },
+            "opacity": {"value": 0.6},
+            "tooltip": [
+              {"field": "Country Name", "type": "nominal"},
+              {"field": "Year", "type": "quantitative", "format": ","},
+              {"field": "Unemployment Rate", "type": "quantitative", "format": ","},
+              {"field": "GDP per capita (thousand USD)", "type": "quantitative", "format": ".2f"},
+              {"field": "GDP", "type": "quantitative", "format": ","},
+              {"field": "Population", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "dy": -10,
+            "fontSize": 11.5,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "text": {"field": "Country Name", "type": "nominal"},
+            "color": {"value": "black"},
+            "opacity": {
+              "condition": {
+                "test": "datum['Country Name'] == 'China' || datum['Country Name'] == 'United States' || datum['Country Name'] == 'Australia' || datum['Country Name'] == 'Eswatini' || datum['Country Name'] == 'Luxembourg'",
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Total GDP vs Unemployment Rate",
+      "width": 370,
+      "height": 250,
+      "transform": [
+        {"filter": "datum.Population > Population_Above"},
+        {"filter": "datum.Year == year_selection"},
+        {"filter": "Continent_selection == null || datum.Continent == Continent_selection"},
+        {"calculate": "datum.GDP/1e12", "as": "GDP (trillion USD)"}
+      ],
+      "encoding": {
+        "x": {
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "title": "Unemployment Rate (%)",
+          "axis": {"tickCount": 5},
+          "scale": {"domain": [0, 40]}
+        },
+        "y": {
+          "field": "GDP (trillion USD)",
+          "type": "quantitative",
+          "title": "Total GDP (Trillion USD)",
+          "axis": {"tickCount": 6, "format": ".1f"},
+          "scale": {"domain": [0, 28]}
+        }
+      },
+      "layer": [
+        {
+          "mark": "circle",
+          "encoding": {
+            "size": {
+              "field": "Population",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [10000, 500000, 10000000, 500000000, 1000000000],
+                "range": [10, 30, 50, 150, 200, 300]
+              },
+              "legend": {
+                "format": ".1s",
+                "labelExpr": "replace(datum.label, 'G', 'B')"
+              }
+            },
+            "color": {
+              "field": "Continent",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "North America",
+                  "South America",
+                  "Europe",
+                  "Africa",
+                  "Asia",
+                  "Oceania"
+                ],
+                "range": [
+                  "#e41a1c",
+                  "#984ea3",
+                  "#ff7f00",
+                  "#a6cee3",
+                  "#377eb8",
+                  "#a65628"
+                ]
+              }
+            },
+            "opacity": {"value": 0.6},
+            "tooltip": [
+              {"field": "Country Name", "type": "nominal"},
+              {"field": "Year", "type": "quantitative", "format": ","},
+              {"field": "Unemployment Rate", "type": "quantitative", "format": ","},
+              {"field": "GDP (trillion USD)", "type": "quantitative", "format": ".2f"},
+              {"field": "Population", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "dy": -10,
+            "fontSize": 11.5,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "text": {"field": "Country Name", "type": "nominal"},
+            "color": {"value": "black"},
+            "opacity": {
+              "condition": {
+                "test": "datum['Country Name'] == 'China' || datum['Country Name'] == 'United States' || datum['Country Name'] == 'Australia' || datum['Country Name'] == 'Eswatini' || datum['Country Name'] == 'Luxembourg'",
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11.5,
+            "fontWeight": "bold",
+            "dx": 10
+          },
+          "encoding": {
+            "text": {
+              "condition": {
+                "test": "datum.Country === 'United States'",
+                "value": "The USA has been dominating the global market for many years"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Unemployment Rate and Trends</title>
+
+  <!-- Import Vega and Vega Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+  integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+</head>
+
+<body>
+
+  <div class="page">
+    <!-- top banner -->
+    <header class="header-banner">
+      <h1>UNEMPLOYMENT IN THE WORLD</h1>
+      <hr id="line">
+      <sub id="subtitle">An overview of global trends in unemployment, population, and GDP</sub>
+    </header>
+
+    <!-- Visualisation Section 1: Map Visualization -->
+    <section class="visualisation-section">
+      <div class="pure-u-1">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+    </section>
+
+    <!-- Visualisation Section 2: Heatmap of Population Change -->
+    <section class="visualisation-section">
+      <div class="pure-u-1-2">
+        <div class="description">
+          <h3>Defining Unemployment</h3>
+          <p>Unemployment rate is defined as the number of people in working age that are currently unemployed but are actively looking for a job, 
+            divided by the total labor force. The unemployment rate is a lagging economic indicator, which means that it reacts to past circumstances, rather than predicting in which direction an economy may evolve.</p>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description">
+          <h3>COVID-19 on Unemployment</h3>          
+          <p>When the COVID-19 pandemic started spreading in late 2019, unemployment increased around the world. 
+            However, global labor markets were able to recover quickly as businesses were able to adapt, helped by government support packages. By 2022, the global unemployment rate had fallen below pre-pandemic levels. </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visualisation Section 3: GDP Trends -->
+    <section class="visualisation-section">
+      <div class="pure-u-1">
+          <div id="vis1" class="vis-container"></div>
+      </div>
+    </section>
+
+    <!-- Data Interpretation and Further Insights -->
+    <section class="content-section">
+      <div class="pure-u-1-2">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description">
+          <h3>Economic Growth</h3>
+          <p>Economic growth refers to an increase in the size of a country's economy over a period of time. The size of an economy is typically 
+            measured by the total production of goods and services in the economy, which is called gross domestic product (GDP). <br> Note that GDP 
+            doesn't capture the broader aspects of economic welfare of a nation's population. For example, if GDP rose by 2 per cent one year, but 
+            the population grew by 4 per cent, then average GDP per person would have decreased. </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="pure-u-1-2">
+        <div class="description">
+          <h3>The Role of Population Growth in Economic Health</h3>
+          <p>Population growth is another key factor in economic development. A rising population can contribute to a larger labor force, which, if managed properly, can lead to economic prosperity. <br>
+            However, unchecked growth may lead to challenges in infrastructure, housing, and unemployment rates, as seen in certain developing countries.</p>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+    </section>
+
+    <!-- Visualisation Section 5: Population changes -->
+    <section class="visualisation-section">
+      <div class="pure-u-1">
+          <div id="vis5" class="vis-container"></div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+      <div class="pure-u-1-1 small-font">
+        <p>This visualization was created by Tia Evans (33973873) for FIT3179 Data Visualization 2.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+    var specVis1 = "js/combined_plots.vg.json";
+    var specVis2 = "js/area_plot_brush_population.vg.json";
+    var specVis3 = "js/map.vg.json";
+    var specVis4 = "js/area_plot_brush_GDP.vg.json";
+    var specVis5 = "js/heatmap.vg.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false });
+    vegaEmbed('#vis2', specVis2, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis3', specVis3, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis4', specVis4, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis5', specVis5, { "actions": false }).catch(function(error) {console.error("Error rendering the heatmap:", error);});
+  </script>
+</body>
+</html>

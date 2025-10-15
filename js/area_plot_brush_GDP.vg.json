@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/teva0012-star/Employment_data/refs/heads/main/Employment_Unemployment_GDP_data.csv"
+  },
+  "vconcat": [
+    {
+      "width": 420,
+      "height": 196,
+      "transform": [
+        {
+          "aggregate": [{"op": "sum", "field": "GDP", "as": "Total GDP"}],
+          "groupby": ["Year", "Continent"]
+        },
+        {
+          "calculate": "datum['Total GDP'] / 1000000000000",
+          "as": "GDP (Trillion)"
+        }
+      ],
+      "mark": {"type": "area", "opacity": 0.8},
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {"domain": {"param": "time_brush"}},
+          "axis": {"title": "Year", "tickCount": 8}
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "GDP (Trillion)",
+          "type": "quantitative",
+          "title": "GDP (Trillion USD)",
+          "axis": {"tickCount": 8}
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Oceania",
+              "Asia",
+              "Africa",
+              "Europe",
+              "North America",
+              "South America"
+            ],
+            "range": [
+              "#a65628",
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8"
+            ]
+          },
+          "title": "Continent",
+          "legend": {
+            "orient": "top-left",
+            "title": "Continent",
+            "fillColor": "white",
+            "labelColor": "#333"
+          }
+        },
+        "tooltip": [
+          {"field": "Continent", "type": "nominal"},
+          {"field": "Year", "type": "quantitative"},
+          {
+            "field": "GDP (Trillion)",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "width": 420,
+      "height": 40,
+      "transform": [
+        {
+          "aggregate": [{"op": "sum", "field": "GDP", "as": "Total GDP"}],
+          "groupby": ["Year"]
+        },
+        {
+          "calculate": "datum['Total GDP'] / 1000000000000",
+          "as": "GDP (trillion)"
+        }
+      ],
+      "mark": {"type": "line", "color": "steelblue"},
+      "params": [
+        {
+          "name": "time_brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "axis": {"title": "Select Time Range", "tickCount": 10}
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "GDP (trillion)",
+          "type": "quantitative",
+          "axis": {
+            "title": "GDP (trillion)",
+            "tickCount": 3,
+            "grid": false
+          }
+        }
+      }
+    }
+  ]
+}
