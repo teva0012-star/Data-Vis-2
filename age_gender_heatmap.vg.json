@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+        "url": "https://raw.githubusercontent.com/teva0012-star/Data-Vis-2/refs/heads/main/data/Gender_age_unemployment_data.csv"
+      },
+  "vconcat": [
+    {
+      "width": 300,
+      "height": 200,
+      "transform": [
+        {"filter": "datum.Gender === 'Female'"}
+      ],
+      "mark": "rect",
+      "encoding": {
+        "x": {
+            "field": "Age",
+            "type": "ordinal",
+            "sort": ["<15", "15-24", ">25"],
+            "axis": {
+                "title": "Age Group",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Continent",
+            "type": "nominal",
+            "axis": {"title": null}
+        },
+        "color": {
+          "aggregate": "mean",
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "title": "Unemployment Rate (%)",
+          "scale": {"type": "linear","range": ["#ffffb2", "#fd8d3c", "#bd0026"]},
+          "legend": {
+                    "orient": "bottom",
+                    "direction": "horizontal"
+                  }
+        },
+        "tooltip": [
+          {"field": "Gender", "title": "Gender"},
+          {"field": "Continent"},
+          {"field": "Age", "title": "Age Group"},
+          {
+            "aggregate": "mean",
+            "field": "Unemployment Rate",
+            "title": "Avg Unemployment (%)",
+            "format": ".2f"
+          }
+        ]
+      },
+      "title": "Female"
+    },
+    {
+      "width": 300,
+      "height": 200,
+      "transform": [
+        {"filter": "datum.Gender === 'Male'"}
+      ],
+      "mark": "rect",
+      "encoding": {
+        "x": {
+            "field": "Age",
+            "type": "ordinal",
+            "sort": ["<15", "15-24", ">25"],
+            "axis": {
+                "title": "Age Group",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Continent",
+            "type": "nominal",
+            "axis": {"title": null}
+        },
+        "color": {
+          "aggregate": "mean",
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "title": "Unemployment Rate (%)",
+          "scale": {"scheme": "reds"}
+        },
+        "tooltip": [
+          {"field": "Gender", "title": "Gender"},
+          {"field": "Continent"},
+          {"field": "Age", "title": "Age Group"},
+          {
+            "aggregate": "mean",
+            "field": "Unemployment Rate",
+            "title": "Avg Unemployment (%)",
+            "format": ".2f"
+          }
+        ]
+      },
+      "title": "Male"
+    }
+  ],
+  "config": {
+    "axis": {
+      "grid": true,
+      "tickBand": "extent"
+    }
+  }
+}

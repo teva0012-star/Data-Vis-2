@@ -1,0 +1,219 @@
+body {
+  background-color: lightgrey; 
+  font-family: 'Open Sans', sans-serif;
+  color: #333; 
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Page container */
+.page {
+  width: 80vw; /* Page width is 90% of the screen width */
+  max-width: 1000px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+/* Header Styling */
+.header-banner {
+  text-align: center;
+  background-color: #0B4062;
+  padding: 40px 20px;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+hr {
+  margin: 15px 0;
+  border: 1px solid #fff;
+  width: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Visualisation container */
+.vis-container {
+  width: 100%;
+  max-width: 100%; /* Prevent overflowing */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  overflow-x: auto; /* Scroll if content overflows horizontally */
+}
+
+
+/* Section content */
+.content-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.description {
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: #0B4062;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #0B4062;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+}
+
+sub {
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #0B4062;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Visualisation section with some adjustments for scaling */
+.visualisation-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.visualisation-section .pure-u-1-2 {
+  width: 48%; /* Ensures equal sizing of columns */
+}
+
+.visualisation-section .pure-u-1-3 {
+  width: 31%; /* Slightly more space for 3 columns */
+}
+
+.highlight-AS {
+  color: #377eb8; 
+  font-weight: bold;
+}
+
+.highlight-EU {
+  color: #ff7f00; 
+  font-weight: bold;
+}
+
+.highlight-NA {
+  color: #e41a1c; 
+  font-weight: bold;
+}
+
+.highlight-SA {
+  color: #984ea3; 
+  font-weight: bold;
+}
+
+.highlight-OC {
+  color: #a65628; 
+  font-weight: bold;
+}
+
+.highlight-AF {
+  color: #a6cee3; 
+  font-weight: bold;
+}
+
+.highlight {
+  color: #0B4062; 
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .pure-u-1-2, .pure-u-1-3 {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #subtitle {
+    font-size: 1rem;
+  }
+
+  .content-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    margin-bottom: 20px;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  #subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+.vis-container .vega-bind input,
+.vis-container .vega-bind select,
+.vis-container .vega-bind label {
+  font-size: 11px !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

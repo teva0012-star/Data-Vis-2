@@ -1,0 +1,350 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+            "url": "https://raw.githubusercontent.com/teva0012-star/Data-Vis-2/refs/heads/main/data/Employment_Unemployment_GDP_data.csv",
+            "format": {"type": "csv"}
+          },
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "title": "China",
+          "width": 120,
+          "height": 120,
+          "transform": [
+            {"filter": "datum.Year == 2022"},
+            {"filter": "datum['Country Name'] == 'China'"},
+            {
+              "fold": ["Agriculture", "Industry", "Services"],
+              "as": ["Sector", "UnempPct"]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {"type": "arc", "innerRadius": 15, "stroke": "#fff"},
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20, "rangeMax": 60}
+                },
+                "color": {
+                  "field": "Sector",
+                  "type": "nominal",
+                  "title": "Working sector",
+                  "scale": {
+                    "domain": ["Agriculture", "Industry", "Services"],
+                    "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                  },
+                  "legend": {
+                    "orient": "bottom",
+                    "direction": "horizontal"
+                  }
+                },
+                "tooltip": [
+                  {"field": "Sector", "title": "Working sector"},
+                  {"field": "UnempPct", "title": "Unemployment rate", "format": ".1f"}
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radiusOffset": 10,
+                "fontSize": 8,
+                "fill": "#000",
+                "fontWeight": "bold"
+              },
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+                },
+                "text": {"field": "UnempPct", "format": ".1f"}
+              }
+            }
+          ]
+        },
+        {
+          "title": "USA",
+          "width": 120,
+          "height": 120,
+          "transform": [
+            {"filter": "datum.Year == 2022"},
+            {"filter": "datum['Country Name'] == 'United States of America'"},
+            {
+              "fold": ["Agriculture", "Industry", "Services"],
+              "as": ["Sector", "UnempPct"]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {"type": "arc", "innerRadius": 15, "stroke": "#fff"},
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20, "rangeMax": 60}
+                },
+                "color": {
+                  "field": "Sector",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": ["Agriculture", "Industry", "Services"],
+                    "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                  }
+                },
+                "tooltip": [
+                  {"field": "Sector", "title": "Working sector"},
+                  {"field": "UnempPct", "title": "Unemployment rate", "format": ".1f"}
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radiusOffset": 10,
+                "fontSize": 8,
+                "fill": "#000",
+                "fontWeight": "bold"
+              },
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+                },
+                "text": {"field": "UnempPct", "format": ".1f"}
+              }
+            }
+          ]
+        },
+        {
+          "title": "Australia",
+          "width": 120,
+          "height": 120,
+          "transform": [
+            {"filter": "datum.Year == 2022"},
+            {"filter": "datum['Country Name'] == 'Australia'"},
+            {
+              "fold": ["Agriculture", "Industry", "Services"],
+              "as": ["Sector", "UnempPct"]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {"type": "arc", "innerRadius": 15, "stroke": "#fff"},
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20, "rangeMax": 60}
+                },
+                "color": {
+                  "field": "Sector",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": ["Agriculture", "Industry", "Services"],
+                    "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                  }
+                },
+                "tooltip": [
+                  {"field": "Sector", "title": "Working sector"},
+                  {"field": "UnempPct", "title": "Unemployment rate", "format": ".1f"}
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radiusOffset": 10,
+                "fontSize": 8,
+                "fill": "#000",
+                "fontWeight": "bold"
+              },
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+                },
+                "text": {"field": "UnempPct", "format": ".1f"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "hconcat": [
+        {
+          "title": "Luxembourg",
+          "width": 120,
+          "height": 120,
+          "transform": [
+            {"filter": "datum.Year == 2022"},
+            {"filter": "datum['Country Name'] == 'Luxembourg'"},
+            {
+              "fold": ["Agriculture", "Industry", "Services"],
+              "as": ["Sector", "UnempPct"]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {"type": "arc", "innerRadius": 15, "stroke": "#fff"},
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20, "rangeMax": 60}
+                },
+                "color": {
+                  "field": "Sector",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": ["Agriculture", "Industry", "Services"],
+                    "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                  }
+                },
+                "tooltip": [
+                  {"field": "Sector", "title": "Working sector"},
+                  {"field": "UnempPct", "title": "Unemployment rate", "format": ".1f"}
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radiusOffset": 10,
+                "fontSize": 8,
+                "fill": "#000",
+                "fontWeight": "bold"
+              },
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+                },
+                "text": {"field": "UnempPct", "format": ".1f"}
+              }
+            }
+          ]
+        },
+        {
+          "title": "Eswatini",
+          "width": 120,
+          "height": 120,
+          "transform": [
+            {"filter": "datum.Year == 2022"},
+            {"filter": "datum['Country Name'] == 'Eswatini'"},
+            {
+              "fold": ["Agriculture", "Industry", "Services"],
+              "as": ["Sector", "UnempPct"]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {"type": "arc", "innerRadius": 15, "stroke": "#fff"},
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20, "rangeMax": 60}
+                },
+                "color": {
+                  "field": "Sector",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": ["Agriculture", "Industry", "Services"],
+                    "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                  }
+                },
+                "tooltip": [
+                  {"field": "Sector", "title": "Working sector"},
+                  {"field": "UnempPct", "title": "Unemployment rate", "format": ".1f"}
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radiusOffset": 10,
+                "fontSize": 8,
+                "fill": "#000",
+                "fontWeight": "bold"
+              },
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+                },
+                "text": {"field": "UnempPct", "format": ".1f"}
+              }
+            }
+          ]
+        },
+        {
+          "title": "Brazil",
+          "width": 120,
+          "height": 120,
+          "transform": [
+            {"filter": "datum.Year == 2022"},
+            {"filter": "datum['Country Name'] == 'Brazil'"},
+            {
+              "fold": ["Agriculture", "Industry", "Services"],
+              "as": ["Sector", "UnempPct"]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {"type": "arc", "innerRadius": 15, "stroke": "#fff"},
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20, "rangeMax": 60}
+                },
+                "color": {
+                  "field": "Sector",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": ["Agriculture", "Industry", "Services"],
+                    "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                  }
+                },
+                "tooltip": [
+                  {"field": "Sector", "title": "Working sector"},
+                  {"field": "UnempPct", "title": "Unemployment rate", "format": ".1f"}
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "radiusOffset": 10,
+                "fontSize": 8,
+                "fill": "#000",
+                "fontWeight": "bold"
+              },
+              "encoding": {
+                "theta": {"field": "UnempPct", "type": "quantitative", "stack": true},
+                "radius": {
+                  "field": "UnempPct",
+                  "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+                },
+                "text": {"field": "UnempPct", "format": ".1f"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resolve": {
+    "legend": {"color": "shared"},
+    "scale": {"color": "shared"}
+  }
+}

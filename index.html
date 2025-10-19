@@ -32,13 +32,15 @@
     <header class="header-banner">
       <h1>UNEMPLOYMENT IN THE WORLD</h1>
       <hr id="line">
-      <sub id="subtitle">An overview of global trends in unemployment, population, and GDP</sub>
+      <div class="subtitle">An overview of global trends in unemployment, population, and GDP</div>
     </header>
 
     <!-- Visualisation Section 1: Map Visualization -->
     <section class="visualisation-section">
       <div class="pure-u-1">
-        <div id="vis3" class="vis-container"></div>
+        <div class="description">
+        <div class="subtitle">Unemployment Rates Around the World (2022)</div>
+        <div id="vis3"></div>
       </div>
     </section>
 
@@ -46,16 +48,39 @@
     <section class="visualisation-section">
       <div class="pure-u-1-2">
         <div class="description">
-          <h3>Defining Unemployment</h3>
-          <p>Unemployment rate is defined as the number of people in working age that are currently unemployed but are actively looking for a job, 
-            divided by the total labor force. The unemployment rate is a lagging economic indicator, which means that it reacts to past circumstances, rather than predicting in which direction an economy may evolve.</p>
+          <div class="subtitle"> <br>Impact of Gender and Age on Unemployment (2022)</div>
+          <div id="vis7"></div>
         </div>
       </div>
       <div class="pure-u-1-2">
         <div class="description">
-          <h3>COVID-19 on Unemployment</h3>          
-          <p>When the COVID-19 pandemic started spreading in late 2019, unemployment increased around the world. 
-            However, global labor markets were able to recover quickly as businesses were able to adapt, helped by government support packages. By 2022, the global unemployment rate had fallen below pre-pandemic levels. </p>
+          <h3>Defining Unemployment</h3>
+          <p><span class="highlight">Unemployment rate</span> is defined as the number of people in working age that are currently unemployed but are actively looking for a job, 
+            divided by the total labor force. The <span class="highlight">unemployment rate</span>  is a lagging economic indicator, which means that it reacts to past circumstances, rather than predicting in which direction an economy may evolve.</p>
+          <div class="subtitle"> Unemployment Rate by Employment Sector (2022)</div>
+          <div id="vis6"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Visualisation Section 2: Heatmap of Population Change -->
+    <section class="visualisation-section">
+      <div class="pure-u-1-2">
+        <div class="description">
+          <h3>Unemployment Between Genders</h3>
+          <p><span class="highlight">Men's Unemployment</span> participation tends to remain relatively stable across life stages, as it is generally unaffected by parenthood. 
+            In contrast, <span class="highlight">women's unemployment rates</span> decline from early adulthood onward, reflecting the disproportionate impact of childbearing and caregiving responsibilities. 
+            These responsibilities can lead to career interruptions, reduced working hours, or temporary withdrawal from the labor force. <br></p>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description">
+          <h3>Working Sector on Unemployment</h3>          
+          <p>As countries get richer, the share of the population working in agriculture tends to decline as people move towards employment in industry and services. That is why countries that have long been developed, 
+            such as the <span class="highlight-NA">USA</span>, <span class="highlight-OC">Australia</span>, and <span class="highlight-EU">Luxembourg</span> have an oversaturated service sector, while developing 
+            or more recently developed countries such as <span class="highlight_AS">China</span>, <span class="highlight-SA">Brazil</span>, and <span class="highlight-AF">Eswatini</span> have a much more even spread of 
+            <span class="highlight">unemployment rates</span> across the three sectors.</p>
         </div>
       </div>
     </section>
@@ -63,7 +88,10 @@
     <!-- Visualisation Section 3: GDP Trends -->
     <section class="visualisation-section">
       <div class="pure-u-1">
-          <div id="vis1" class="vis-container"></div>
+        <div class="vis-container">
+          <div class="subtitle">GDP and Unemployment Rate Trends</div>
+          <div id="vis1"></div>
+        </div>
       </div>
     </section>
 
@@ -75,10 +103,10 @@
       <div class="pure-u-1-2">
         <div class="description">
           <h3>Economic Growth</h3>
-          <p>Economic growth refers to an increase in the size of a country's economy over a period of time. The size of an economy is typically 
-            measured by the total production of goods and services in the economy, which is called gross domestic product (GDP). <br> Note that GDP 
-            doesn't capture the broader aspects of economic welfare of a nation's population. For example, if GDP rose by 2 per cent one year, but 
-            the population grew by 4 per cent, then average GDP per person would have decreased. </p>
+          <p><span class="highlight">Economic growth</span> refers to an increase in the size of a country's economy over a period of time. The size of an economy is typically 
+            measured by the total production of goods and services in the economy, which is called gross domestic product (<span class="highlight">GDP</span>). <br> <br>Note that <span class="highlight">GDP</span> 
+            doesn't capture the broader aspects of economic welfare of a nation's population. For example, between 1992 and 1993, the <span class="highlight-AF">AFrican</span> <span class="highlight">GDP</span> grew by 10 billion USD, 
+            and the population increased by 20 million people, which resulted in a 1.4% decrease in <span class="highlight-AF">Africa's</span> <span class="highlight">GDP per capita</span>. </p>
         </div>
       </div>
     </section>
@@ -87,8 +115,10 @@
       <div class="pure-u-1-2">
         <div class="description">
           <h3>The Role of Population Growth in Economic Health</h3>
-          <p>Population growth is another key factor in economic development. A rising population can contribute to a larger labor force, which, if managed properly, can lead to economic prosperity. <br>
-            However, unchecked growth may lead to challenges in infrastructure, housing, and unemployment rates, as seen in certain developing countries.</p>
+          <p><span class="highlight">Population growth</span> represents a significant factor in economic development. An increasing population has the potential to expand the labor force, 
+            which, when effectively managed, can drive economic growth and enhance productivity. However, if not adequately addressed, rapid population growth may place 
+            considerable strain on infrastructure, housing, and employment systems, as evidenced in various developing nations. Strategic planning and investment are 
+            therefore essential to ensure that <span class="highlight">population growth</span> translates into sustainable development.</p>
         </div>
       </div>
       <div class="pure-u-1-2">
@@ -106,7 +136,8 @@
     <!-- Footer Section -->
     <footer>
       <div class="pure-u-1-1 small-font">
-        <p>This visualization was created by Tia Evans (33973873) for FIT3179 Data Visualization 2.</p>
+        <footer>Data sources: World Bank Open Data, International Labour Organisation (ILO), World Bank Database</footer>
+        <footer>Created by Tia Evans (33973873) for FIT3179 Data Visualization 2 | Last Edit 19/10/2025.</footer>
       </div>
     </footer>
   </div>
@@ -117,12 +148,19 @@
     var specVis3 = "js/map.vg.json";
     var specVis4 = "js/area_plot_brush_GDP.vg.json";
     var specVis5 = "js/heatmap.vg.json";
+    var specVis6 = "js/radial_charts.vg.json";
+    var SpecVis7 = "js/age_gender_heatmap.vg.json";
+    var SpecVis8 = "js/treemap.vg.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false });
     vegaEmbed('#vis2', specVis2, { "actions": false }).catch(console.error);
     vegaEmbed('#vis3', specVis3, { "actions": false }).catch(console.error);
     vegaEmbed('#vis4', specVis4, { "actions": false }).catch(console.error);
     vegaEmbed('#vis5', specVis5, { "actions": false }).catch(function(error) {console.error("Error rendering the heatmap:", error);});
+    vegaEmbed('#vis6', specVis6, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis7', SpecVis7, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis8', SpecVis8, { "actions": false }).catch(console.error);
+
   </script>
 </body>
 </html>

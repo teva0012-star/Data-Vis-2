@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/teva0012-star/Data-Vis-2/refs/heads/main/data/Employment_Unemployment_GDP_data.csv"
+  },
+  "vconcat": [
+    {
+      "width": 400,
+      "height": 180,
+      "transform": [
+        {
+          "aggregate": [{"op": "sum", "field": "Population", "as": "Total Population"}],
+          "groupby": ["Year", "Continent"]
+        },
+        {
+          "calculate": "datum['Total Population'] / 1000000000",
+          "as": "Population (billion)"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {"type": "area", "opacity": 0.8},
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "quantitative",
+              "scale": {"domain": {"param": "time_brush"}},
+              "axis": {"title": "Year", "tickCount": 8}
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "Population (billion)",
+              "type": "quantitative",
+              "title": "Population (billion)",
+              "axis": {"tickCount": 8}
+            },
+            "color": {
+              "field": "Continent",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Oceania",
+                  "Asia",
+                  "Africa",
+                  "Europe",
+                  "North America",
+                  "South America"
+                ],
+                "range": [
+                  "#a65628",
+                  "#e41a1c",
+                  "#984ea3",
+                  "#ff7f00",
+                  "#a6cee3",
+                  "#377eb8"
+                ]
+              },
+              "title": "Continent",
+              "legend": {
+                "orient": "bottom",
+                "title": "Continent",
+                "fillColor": "white",
+                "labelColor": "#333"
+              }
+            },
+            "tooltip": [
+              {"field": "Continent", "type": "nominal"},
+              {"field": "Year", "type": "quantitative"},
+              {
+                "field": "Population (billion)",
+                "type": "quantitative",
+                "format": ".2f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "Year": 2022,
+                "Population (billion)": 3.5,
+                "Note": "In 2022, Asia made up 60%"
+              },
+              {
+                "Year": 2022,
+                "Population (billion)": 3.0,
+                "Note": "of the world's population"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dy": -10,
+            "dx": -160,
+            "fontSize": 11,
+            "fontWeight": "bold",
+            "color": "#333"
+          },
+          "encoding": {
+            "x": {"field": "Year", "type": "quantitative"},
+            "y": {"field": "Population (billion)", "type": "quantitative"},
+            "text": {"field": "Note"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 400,
+      "height":50,
+      "transform": [
+        {
+          "aggregate": [{"op": "sum", "field": "Population", "as": "Total Population"}],
+          "groupby": ["Year"]
+        },
+        {
+          "calculate": "datum['Total Population'] / 1000000000",
+          "as": "Population (billion)"
+        }
+      ],
+      "mark": {"type": "line", "color": "steelblue"},
+      "params": [
+        {
+          "name": "time_brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "axis": {"title": "Select Time Range", "tickCount": 10}
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "Population (billion)",
+          "type": "quantitative",
+          "axis": {
+            "title": "World Pop.",
+            "tickCount": 3,
+            "grid": false
+          }
+        }
+      }
+    }
+  ]
+}
